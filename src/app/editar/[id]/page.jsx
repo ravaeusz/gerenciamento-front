@@ -15,6 +15,7 @@ export default function Editar(){
     const [sobrenome, setSobrenome] = useState('')
     const [peso, setPeso] = useState('')
     const [telefone, setTelefone] = useState('')
+    const [turma, setTurma] = useState('')
 
      useEffect(() => {
     async function fetchId() {
@@ -25,6 +26,7 @@ export default function Editar(){
         setSobrenome(data.result[0].al_sobrenome)
         setPeso(data.result[0].al_peso )
         setTelefone(data.result[0].al_telefone )
+        setTurma(data.result[0].al_turma)
       } catch (e) {
         console.error(e)
       }
@@ -38,7 +40,7 @@ export default function Editar(){
 
   async function fetchUpdate(){;
     try{
-        const response = await updateAluno(id, nome, sobrenome, peso, telefone, token)
+        const response = await updateAluno(id, nome, sobrenome, peso, telefone, turma, token)
         console.log(response);    
     }catch(e){
         console.log(e);   
@@ -84,8 +86,19 @@ export default function Editar(){
                 id="telefone" />
                 </div>
                 </div>
+                <div className='flex justify-center gap-7'>
+                <div className='flex flex-col text-center justify-center'>
+                <label className='font-bold text-[#627c66] text-[20px]'>Turma</label>
+                <input className='border-1 p-2 text-[18px]' 
+                value={turma}
+                onChange={(e) => setTurma(e.target.value)}
+                type="text" 
+                name="turma" 
+                id="turma" />
+                </div>
                 <div className='flex justify-center'>
-                <button onClick={fetchUpdate} className='text-white font-bold text-[20px] flex justify-center cursor-pointer py-3 px-17 bg-[#627c66] mt-5'>Editar</button>
+                <button onClick={fetchUpdate} className='hover:bg-[#897CE8] text-white font-bold text-[20px] flex justify-center cursor-pointer px-21 py-2 bg-[#627c66] mt-5'>Editar</button>
+                </div>
                 </div>
                 </div>
     )

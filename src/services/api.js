@@ -20,17 +20,17 @@ export async function deleteAluno(id, token){
     })
     return response.data
 }
-export async function createAluno(nome, sobrenome, peso, telefone, token){
+export async function createAluno(nome, sobrenome, peso, telefone, turma, token){
             const response = await axios.post(`http://localhost:3030/alunos`,{
-            nome, sobrenome, peso, telefone},
+            nome, sobrenome, peso, telefone, turma},
             {
             headers:  { 'Authorization': `Bearer ${token}` }
             })
             return response.data
 }
-export async function updateAluno(id, nome, sobrenome, peso, telefone, token){
+export async function updateAluno(id, nome, sobrenome, peso, telefone, turma, token){
                 const response = await axios.put(`http://localhost:3030/alunos/${id}`,{
-            nome, sobrenome, peso, telefone},
+            nome, sobrenome, peso, telefone, turma},
             {
             headers:  { 'Authorization': `Bearer ${token}` }
             })
@@ -42,5 +42,12 @@ export async function getById(id, token){
     })
     return response.data;
 }
+export async function getByTurma(turma, token){
+        const response = await axios.get(`http://localhost:3030/alunos/turma/${turma}`,{
+        headers:  { 'Authorization': `Bearer ${token}` }
+    })
+    return response.data;
+}
+
 
 
